@@ -1,0 +1,9 @@
+
+const hairChoice=document.querySelector('#hair-goal');
+const hairAdvice={easy:['Короткая текстура','Короткие виски и управляемая длина сверху. Хорошая отправная точка, если по утрам хочется обойтись руками и небольшим количеством средства.'],classic:['Мягкая классика','Сдержанный силуэт и плавный переход длины. Обсудите с мастером пробор и то, как волосы ложатся без укладки.'],long:['Сохранить длину','Акцент на форме и текстуре: убрать лишний объём, сохранив движение волос. Подойдёт как тема для консультации перед стрижкой.']};
+function adviseHair(){if(!hairChoice)return;const [title,text]=hairAdvice[hairChoice.value];document.querySelector('#hair-result').textContent=title;document.querySelector('#hair-explanation').textContent=text;document.querySelector('#hair-book').dataset.book='Консультация: '+title}hairChoice?.addEventListener('change',adviseHair);adviseHair();
+const cleanArea=document.querySelector('#clean-area');
+function cleanEstimate(){if(!cleanArea)return;const area=Number(cleanArea.value),rate=Number(document.querySelector('#clean-type').value);const extra=[...document.querySelectorAll('[data-extra]:checked')].reduce((s,x)=>s+Number(x.value),0);const total=Math.max(3000,area*rate)+extra;document.querySelector('#clean-area-label').textContent=area+' м²';document.querySelector('#clean-total').textContent=total.toLocaleString('ru-RU')+' ₽';document.querySelector('#clean-book').dataset.book='Уборка '+area+' м², ориентир '+total.toLocaleString('ru-RU')+' ₽'}
+cleanArea?.addEventListener('input',cleanEstimate);document.querySelector('#clean-type')?.addEventListener('change',cleanEstimate);document.querySelectorAll('[data-extra]').forEach(x=>x.addEventListener('change',cleanEstimate));cleanEstimate();
+
+const routeFromLink=new URLSearchParams(location.search).get("route");if(["ocean","city","mountain"].includes(routeFromLink))document.querySelector("[data-route="+routeFromLink+"]")?.click();

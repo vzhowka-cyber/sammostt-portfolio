@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://vzhowka-cyber.github.io/sammostt-portfolio/sitemap.xml

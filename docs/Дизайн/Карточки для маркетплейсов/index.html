@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Три демонстрационные карточки товаров: спорт, минимализм и природный стиль. Дизайн и тексты для портфолио Sammostt.">
+<meta name="theme-color" content="#EEEFF1">
+<title>Карточки товаров — три визуальные концепции</title>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<style>
+/* Layout: витрина портфолио — слева инфографика 3:4, справа тексты карточки */
+:root{
+  --bg:#EEEFF1; --surface:#FFFFFF; --ink:#1F2328; --muted:#646B73; --line:#DADDE2; --accent:#5B4FCF;
+  --body:"Manrope",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17191C; --surface:#202328; --ink:#E9EBEE; --muted:#9BA2AA; --line:#33373D; --accent:#A79DFF; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#17191C; --surface:#202328; --ink:#E9EBEE; --muted:#9BA2AA; --line:#33373D; --accent:#A79DFF; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.6 var(--body)}
+.wrap{max-width:1100px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.top{padding-block:48px 24px;display:flex;flex-direction:column;gap:10px;max-width:680px}
+.top h1{font:800 clamp(1.8rem,4vw,2.6rem)/1.1 var(--body);margin:0;text-wrap:balance}
+.top p{color:var(--muted);margin:0}
+.label{font:500 .72rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.item{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:40px;padding-block:40px;border-top:1px solid var(--line)}
+.item:last-of-type{margin-bottom:48px}
+.copy{display:flex;flex-direction:column;gap:18px;min-width:0}
+.copy h2{font:700 1.25rem/1.3 var(--body);margin:0}
+.copy h3{font:700 .95rem var(--body);margin:0}
+.copy p{margin:0;max-width:62ch}
+.specs{display:grid;grid-template-columns:auto 1fr;margin:0;border-top:1px solid var(--line)}
+.specs dt,.specs dd{padding:8px 0;border-bottom:1px solid var(--line);margin:0}
+.specs dt{color:var(--muted);padding-right:20px}
+.specs dd{font-variant-numeric:tabular-nums}
+.keys{display:flex;flex-wrap:wrap;gap:6px}
+.keys span{font:400 .78rem var(--mono);background:var(--surface);border:1px solid var(--line);padding:4px 8px;border-radius:6px}
+.style{font:500 .78rem var(--mono);color:var(--accent)}
+
+/* общий кадр инфографики 3:4 (900×1200, демонстрационный формат) */
+.shot{aspect-ratio:3/4;width:100%;max-width:100%;position:relative;overflow:hidden;border-radius:10px;box-shadow:0 18px 40px -24px rgba(0,0,0,.45)}
+.shot svg.prod{position:absolute}
+
+/* 1. Турник: тёмный спорт */
+.s1{background:#1E1F22;color:#F2F2F0;font-family:"Oswald",Impact,sans-serif}
+.s1::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 52%,#E8572A 52% 64%,transparent 64%)}
+.s1 .t{position:absolute;left:7%;top:6%;right:7%}
+.s1 .t b{display:block;font-size:clamp(1.9rem,8.5vw,2.9rem);line-height:.95;text-transform:uppercase;letter-spacing:.01em}
+.s1 .t small{display:inline-block;margin-top:10px;background:#E8572A;color:#1E1F22;font:700 .8rem "Oswald",sans-serif;padding:4px 10px;text-transform:uppercase;letter-spacing:.08em}
+.s1 .prod{left:6%;right:6%;top:36%;width:88%}
+.s1 .b{position:absolute;left:7%;right:7%;bottom:5%;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.s1 .b div{border:1px solid #4A4C52;padding:8px;display:flex;flex-direction:column}
+.s1 .b strong{font-size:1.5rem;line-height:1;color:#E8572A}
+.s1 .b span{font:500 .62rem/1.2 "Manrope",sans-serif;text-transform:uppercase;letter-spacing:.06em;color:#C9CACD;margin-top:4px}
+/* 2. Гантели: светлый минимализм, один кобальтовый акцент */
+.s2{background:#F3F3F1;color:#1C1F24;font-family:"Manrope",sans-serif}
+.s2 .t{position:absolute;left:8%;top:7%;right:8%;display:flex;flex-direction:column;gap:6px}
+.s2 .t span{font:500 .7rem "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:#7A7F86}
+.s2 .t b{font-weight:800;font-size:clamp(1.6rem,7vw,2.3rem);line-height:1.05}
+.s2 .t b i{font-style:normal;color:#2F55D4}
+.s2 .prod{left:8%;width:84%;top:34%}
+.s2 ul{position:absolute;left:8%;right:8%;bottom:6%;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.s2 li{background:#FFFFFF;border-radius:8px;padding:9px 10px;font-size:.72rem;font-weight:700;line-height:1.25;display:flex;gap:8px;align-items:center}
+.s2 li::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:#2F55D4}
+.s2 .w{position:absolute;right:8%;top:30%;font:800 .8rem "Manrope",sans-serif;background:#2F55D4;color:#fff;padding:6px 10px;border-radius:999px}
+/* 3. Минеральная вода: воздушный, природный, с антиквой */
+.s3{background:linear-gradient(180deg,#CFE3EA 0%,#EAF3F1 55%,#F7F4EC 100%);color:#21424A}
+.s3::before{content:"";position:absolute;left:-10%;right:-10%;bottom:-8%;height:38%;background:#B9CFC4;clip-path:polygon(0 60%,18% 25%,32% 48%,50% 5%,66% 40%,80% 20%,100% 50%,100% 100%,0 100%);opacity:.55}
+.s3 .t{position:absolute;left:8%;top:6%;right:8%;display:flex;flex-direction:column;gap:6px}
+.s3 .t span{font:500 .68rem "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:#4D7079}
+.s3 .t b{font:600 clamp(1.6rem,7vw,2.3rem)/1.05 "Playfair Display",Georgia,serif}
+.s3 .prod{left:6%;width:34%;top:31%}
+.s3 table{position:absolute;right:7%;top:33%;width:50%;border-collapse:collapse;font:500 .7rem/1.2 "Manrope",sans-serif;background:rgba(255,255,255,.7);border-radius:8px;overflow:hidden}
+.s3 caption{font:600 .78rem "Playfair Display",serif;text-align:left;padding:0 0 6px}
+.s3 td{padding:6px 8px;border-bottom:1px solid rgba(33,66,74,.12)}
+.s3 td:last-child{text-align:right;font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+.s3 .b{position:absolute;left:8%;right:8%;bottom:6%;display:flex;gap:8px;flex-wrap:wrap}
+.s3 .b span{background:#21424A;color:#F2F7F5;font:600 .7rem "Manrope",sans-serif;padding:6px 10px;border-radius:999px}
+@media (max-width:760px){.item{grid-template-columns:1fr}.shot{max-width:400px}}
+
+
+html{scroll-behavior:smooth;scroll-padding-top:24px;color-scheme:light}
+body{margin:0;min-width:280px}
+[hidden]{display:none!important}
+*:focus-visible{outline:3px solid var(--accent,var(--amber,#5b4fcf));outline-offset:4px}
+input,select,textarea,button{min-height:44px}
+input,select,textarea{min-width:0}
+img,svg{max-width:100%}
+.skip-link{position:absolute;top:8px;left:12px;z-index:100;background:var(--ink);color:var(--bg);padding:10px 16px;transform:translateY(-200%)}
+.skip-link:focus{transform:translateY(0)}
+.demo-bar{border-bottom:1px solid var(--line);background:var(--surface);font:400 12px/1.5 var(--body);padding:10px 0}
+.demo-bar .wrap{display:flex;gap:8px 24px;justify-content:space-between;flex-wrap:wrap;align-items:center}
+.demo-bar p{max-width:75ch;margin:0}
+.demo-bar a{font-weight:600;text-underline-offset:4px;white-space:nowrap}
+.menu-toggle{display:none;background:transparent;border:1px solid var(--line);padding:8px 14px;color:var(--ink);font:600 14px var(--body);cursor:pointer}
+.form-note{font-size:13px;line-height:1.5;color:var(--muted)}
+.field-error{font-size:13px;color:#A52B23;line-height:1.4}
+input[aria-invalid=true]{border-color:#A52B23}
+.ok:focus{outline:2px solid var(--ink);outline-offset:3px}
+label{color:var(--ink)}
+.theme-toggle{margin-left:auto;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 13px;cursor:pointer;font:500 12px var(--body)}
+.theme-toggle:focus-visible{outline:2px solid var(--ink)}
+.hero,.contact,.guar,.stats,.services,.tours,.duties,.fields,.row{min-width:0}
+.hero>* , .row>*,.stats>*,.services>*,.contact>*{min-width:0}
+.label,.eyebrow{line-height:1.5}
+footer span{overflow-wrap:anywhere}
+@media(max-width:900px){
+ .menu-toggle{display:inline-flex;align-items:center;justify-content:center}
+ header .nav ul{display:none}
+ header .nav ul.is-open{display:flex;flex-direction:column;gap:0;flex-basis:100%;order:10;border-top:1px solid var(--line);padding-top:8px}
+ header .nav ul a{display:block;padding:12px 0;min-height:44px}
+ header .nav>.btn,header .nav>.tel{display:none}
+ .demo-bar .wrap{gap:8px 16px}
+ .hero{gap:28px}
+}
+@media(max-width:520px){
+ form{padding:20px}
+ .hero{padding-top:36px}
+ .hero-text{padding:0}
+ .stamp .sign{flex-wrap:wrap}
+ .stats div{padding:22px 12px}
+ .stats strong{font-size:clamp(20px,6vw,28px)}
+ .guar{gap:28px}
+ .guar li{flex-wrap:wrap;gap:4px}
+ .guar li span:last-child{white-space:normal}
+ .contact{gap:28px}
+ .row{grid-template-columns:minmax(0,1fr)}
+ .pass-body{padding:20px}
+ .pass-top{gap:12px;font-size:10px}
+ .fields{gap:14px}
+ .tour .price{flex-wrap:wrap;gap:8px}
+ .duties div{gap:10px;flex-wrap:wrap}
+ .logo{font-size:clamp(14px,4vw,19px)}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+
+.top{max-width:780px}
+.item{gap:48px;align-items:start}
+.shot{container-type:inline-size;isolation:isolate;flex:none}
+.s1 .t b{font-size:12cqw}
+.s1 .t small{font-size:3.3cqw;margin-top:2.6cqw;padding:1.1cqw 2.6cqw}
+.s1 .b{gap:2cqw}
+.s1 .b div{padding:2.1cqw;background:#25272b}.s1 .prod{left:10%;width:80%;top:40%}
+.s1 .b strong{font-size:6.3cqw}
+.s1 .b span{font-size:2.6cqw}
+.s2 .t span{font-size:2.8cqw}
+.s2 .t b{font-size:9.5cqw}
+.s2 .w{font-size:3.1cqw;padding:1.6cqw 2.6cqw}
+.s2 li{font-size:3cqw;padding:2.4cqw 2.6cqw;gap:2cqw}
+.s2 li::before{width:2.1cqw;height:2.1cqw}
+.s3 .t span{font-size:2.6cqw}
+.s3 .t b{font-size:9.7cqw}
+.s3 table{right:5%;width:55%;font-size:2.5cqw;table-layout:auto}
+.s3 caption{font-size:3.2cqw}
+.s3 td{padding:1.5cqw 1.4cqw}
+.s3 td:last-child{font-size:2.4cqw}
+.s3 .b{gap:2cqw}
+.s3 .b span{font-size:2.8cqw;padding:1.6cqw 2.6cqw}
+.specs{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+.specs dt,.specs dd{overflow-wrap:anywhere}
+.keys span{overflow-wrap:anywhere;max-width:100%}
+.downloads{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.download{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 16px;background:var(--ink);color:var(--bg);border-radius:8px;text-decoration:none;font-size:13px;font-weight:700}
+.download.secondary{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+.item>.artwork{min-width:0}
+.artwork .downloads{margin-top:20px}
+@media(max-width:760px){.item{gap:28px}.shot{max-width:380px}.copy{gap:16px}.item{padding-block:32px}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#top">К содержимому</a>
+<div class="demo-bar"><div class="wrap"><p>Учебный концепт для портфолио. Бренды и характеристики вымышлены.</p><a href="../../index.html">← Все проекты</a></div></div>
+<main id="top" tabindex="-1"><div class="wrap">
+  <div class="top">
+    <span class="label">Портфолио · Wildberries и Ozon</span>
+    <h1>Карточки товаров в трёх стилях</h1>
+    <p>Главная картинка-инфографика в формате 3:4 и тексты для карточки: название, характеристики и описание с ключевыми словами для поиска маркетплейса. Бренды, характеристики и состав вымышленные. SVG-иллюстрации созданы для демонстрации, без фотографии реального товара.</p>
+  </div>
+
+  <article class="item">
+    <div class="artwork"><div class="shot s1" role="img" aria-label="Инфографика турника VERTIKAL">
+      <div class="t">
+        <b>Турник<br>в дверной<br>проём</b>
+        <small>Без сверления</small>
+      </div>
+      <svg class="prod" viewBox="0 0 300 190" aria-hidden="true">
+        <rect x="18" y="0" width="26" height="190" fill="#3A3C41"/>
+        <rect x="256" y="0" width="26" height="190" fill="#3A3C41"/>
+        <rect x="44" y="70" width="212" height="16" rx="8" fill="#CFD2D6"/>
+        <rect x="44" y="64" width="14" height="28" rx="3" fill="#E8572A"/>
+        <rect x="242" y="64" width="14" height="28" rx="3" fill="#E8572A"/>
+        <rect x="74" y="66" width="52" height="24" rx="10" fill="#111214"/>
+        <rect x="174" y="66" width="52" height="24" rx="10" fill="#111214"/>
+        <path d="M60 112 H240" stroke="#8D9096" stroke-width="1.5" stroke-dasharray="5 5"/>
+        <path d="M60 106 v12 M240 106 v12" stroke="#8D9096" stroke-width="1.5"/>
+        <text x="150" y="134" fill="#F2F2F0" font-family="Oswald,sans-serif" font-size="15" text-anchor="middle">62–92 см</text>
+      </svg>
+      <div class="b">
+        <div><strong>150</strong><span>кг нагрузка</span></div>
+        <div><strong>28</strong><span>мм диаметр</span></div>
+        <div><strong>2</strong><span>мин установка</span></div>
+      </div>
+    </div>
+
+<div class="downloads"><a class="download" href="exports/card-1.png" download>Скачать PNG · 900 × 1200</a></div></div>
+    <div class="copy">
+      <span class="style">Стиль: тёмный спортивный, контрастный акцент</span>
+      <h2>Турник в дверной проём распорный VERTIKAL, без сверления, до 150 кг, 62–92 см</h2>
+      <dl class="specs">
+        <dt>Ширина проёма</dt><dd>62–92 см</dd>
+        <dt>Макс. нагрузка</dt><dd>150 кг</dd>
+        <dt>Диаметр перекладины</dt><dd>28 мм</dd>
+        <dt>Материал</dt><dd>сталь с порошковым покрытием</dd>
+        <dt>Рукоятки</dt><dd>неопрен, противоскользящие</dd>
+        <dt>Вес</dt><dd>1,9 кг</dd>
+        <dt>Комплектация</dt><dd>турник, 2 упора, инструкция</dd>
+      </dl>
+      <h3>Описание</h3>
+      <p>Распорный турник VERTIKAL ставится в дверной проём за пару минут, без сверления и шурупов. Перекладина фиксируется вращением и выдерживает до 150 кг. Мягкие неопреновые рукоятки не скользят в ладонях, а резиновые упоры не оставляют следов на косяке.</p>
+      <p>Подходит для подтягиваний, виса, упражнений на пресс. Удобен для домашних тренировок взрослых и подростков. Снимается за секунды и помещается в шкаф.</p>
+      <div class="keys"><span>турник для дома</span><span>турник в дверной проем</span><span>распорный турник</span><span>турник без сверления</span><span>перекладина</span></div>
+    </div>
+  </article>
+
+  <article class="item">
+    <div class="artwork"><div class="shot s2" role="img" aria-label="Инфографика гантелей FORMA">
+      <div class="t">
+        <span>FORMA · Home Gym</span>
+        <b>Разборные гантели<br><i>2 × 10 кг</i></b>
+      </div>
+      <span class="w">от 1,5 до 10 кг</span>
+      <svg class="prod" viewBox="0 0 300 150" aria-hidden="true">
+        <rect x="40" y="68" width="220" height="14" rx="4" fill="#9BA0A8"/>
+        <rect x="112" y="66" width="76" height="18" rx="6" fill="#2A2E35"/>
+        <g fill="#2A2E35">
+          <rect x="44" y="22" width="20" height="106" rx="5"/><rect x="66" y="32" width="16" height="86" rx="5"/><rect x="84" y="42" width="12" height="66" rx="4"/>
+          <rect x="236" y="22" width="20" height="106" rx="5"/><rect x="218" y="32" width="16" height="86" rx="5"/><rect x="204" y="42" width="12" height="66" rx="4"/>
+        </g>
+        <rect x="98" y="62" width="8" height="26" rx="2" fill="#2F55D4"/><rect x="194" y="62" width="8" height="26" rx="2" fill="#2F55D4"/>
+        <ellipse cx="150" cy="142" rx="120" ry="5" fill="#000" opacity=".08"/>
+      </svg>
+      <ul>
+        <li>Блины в виниловой оболочке</li>
+        <li>Не царапают пол</li>
+        <li>Гриф с насечкой</li>
+        <li>Замки-гайки из стали</li>
+      </ul>
+    </div>
+
+<div class="downloads"><a class="download" href="exports/card-2.png" download>Скачать PNG · 900 × 1200</a></div></div>
+    <div class="copy">
+      <span class="style">Стиль: светлый минимализм, один яркий акцент</span>
+      <h2>Гантели разборные FORMA 2 шт. по 10 кг, набор для дома, виниловые блины</h2>
+      <dl class="specs">
+        <dt>Вес одной гантели</dt><dd>от 1,5 до 10 кг</dd>
+        <dt>Количество в наборе</dt><dd>2 шт.</dd>
+        <dt>Блины</dt><dd>4 × 1 кг, 4 × 1,25 кг, 4 × 2 кг</dd>
+        <dt>Гриф с гайками</dt><dd>1,5 кг</dd>
+        <dt>Длина грифа</dt><dd>35 см</dd>
+        <dt>Покрытие блинов</dt><dd>винил, внутри цемент</dd>
+        <dt>Фиксация</dt><dd>стальные гайки-звёздочки</dd>
+        <dt>Вес упаковки</dt><dd>21 кг</dd>
+      </dl>
+      <h3>Описание</h3>
+      <p>Набор из двух разборных гантелей FORMA заменяет целую стойку: вес каждой меняется от 1,5 до 10 кг за минуту. Виниловые блины не гремят, не царапают пол и не пачкают руки, а гайки-звёздочки надёжно держат их на грифе.</p>
+      <p>Подходят для силовых тренировок дома, упражнений на руки, плечи, спину и ноги. Насечка на грифе не даёт руке скользить даже во время интенсивной тренировки.</p>
+      <div class="keys"><span>гантели разборные</span><span>гантели 10 кг</span><span>гантели для дома</span><span>набор гантелей</span><span>гантели для фитнеса</span></div>
+    </div>
+  </article>
+
+  <article class="item">
+    <div class="artwork"><div class="shot s3" role="img" aria-label="Инфографика минеральной воды Кедровый ключ">
+      <div class="t">
+        <span>Алтай · скважина № 7 · 1 120 м</span>
+        <b>Кедровый ключ</b>
+      </div>
+      <svg class="prod" viewBox="0 0 100 260" aria-hidden="true">
+        <rect x="38" y="0" width="24" height="14" rx="3" fill="#21424A"/>
+        <path d="M40 14 H60 V44 C60 58 82 66 82 92 V244 C82 252 76 258 68 258 H32 C24 258 18 252 18 244 V92 C18 66 40 58 40 44 Z" fill="#8FC1BC" fill-opacity=".55" stroke="#21424A" stroke-width="2"/>
+        <rect x="18" y="128" width="64" height="70" fill="#F7F4EC"/>
+        <text x="50" y="152" font-family="Playfair Display,serif" font-size="11" fill="#21424A" text-anchor="middle">Кедровый</text>
+        <text x="50" y="166" font-family="Playfair Display,serif" font-size="11" fill="#21424A" text-anchor="middle">ключ</text>
+        <text x="50" y="186" font-family="JetBrains Mono,monospace" font-size="7" fill="#4D7079" text-anchor="middle">0,5 л</text>
+        <path d="M26 100 V230" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" opacity=".6"/>
+      </svg>
+      <table>
+        <caption>Состав и свойства</caption>
+        <tr><td>Гидрокарбонаты</td><td>320–410</td></tr>
+        <tr><td>Кальций</td><td>60–85</td></tr>
+        <tr><td>Магний</td><td>20–35</td></tr>
+        <tr><td>Натрий + калий</td><td>&lt; 30</td></tr>
+        <tr><td>Минерализация</td><td>0,4–0,6 г/л</td></tr>
+        <tr><td>pH</td><td>7,4</td></tr>
+      </table>
+      <div class="b"><span>Столовая</span><span>Стекло</span><span>12 × 0,5 л</span><span>Без газа</span></div>
+    </div>
+
+<div class="downloads"><a class="download" href="exports/card-3.png" download>Скачать PNG · 900 × 1200</a></div></div>
+    <div class="copy">
+      <span class="style">Стиль: воздушный природный, антиква и таблица состава</span>
+      <h2>Вода минеральная питьевая столовая «Кедровый ключ» негазированная, 12 шт. по 0,5 л, стекло</h2>
+      <dl class="specs">
+        <dt>Тип воды</dt><dd>минеральная природная столовая</dd>
+        <dt>Газация</dt><dd>без газа</dd>
+        <dt>Объём</dt><dd>0,5 л × 12 бутылок</dd>
+        <dt>Тара</dt><dd>стеклянная бутылка</dd>
+        <dt>Минерализация</dt><dd>0,4–0,6 г/л</dd>
+        <dt>Источник</dt><dd>Республика Алтай, скважина № 7</dd>
+        <dt>Срок годности</dt><dd>24 месяца</dd>
+      </dl>
+      <h3>Описание</h3>
+      <p>«Кедровый ключ» добывают из артезианской скважины глубиной 1 120 метров в предгорьях Алтая. Вода разливается прямо у источника в стеклянные бутылки, поэтому сохраняет природный вкус без пластикового привкуса.</p>
+      <p>Мягкий гидрокарбонатный кальциево-магниевый состав и низкая минерализация подходят для ежедневного питья. Удобный объём 0,5 л: можно взять с собой на работу, в спортзал или поставить на праздничный стол.</p>
+      <div class="keys"><span>минеральная вода</span><span>вода без газа</span><span>вода в стекле</span><span>вода питьевая 0.5</span><span>алтайская вода</span></div>
+    </div>
+  </article>
+</div>
+</main><footer class="wrap" style="padding:24px 16px"><a href="../../index.html">Все проекты</a> · <a href="https://t.me/Sammostt" target="_blank" rel="noopener noreferrer">Обсудить проект в Telegram</a></footer>
+</body>
+</html>
